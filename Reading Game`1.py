@@ -36,7 +36,9 @@ def weapon_damage(weapon):
     elif weapon == "demon":
         return 8
     elif weapon == "claw":
-        return 2   
+        return 2 
+    elif weapon == "dagger":
+        return 2  
     else:
         raise RuntimeError("You cheated you shouldn't have that weapon")
 def player_input(number):
