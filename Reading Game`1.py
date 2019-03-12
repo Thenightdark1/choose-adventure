@@ -87,7 +87,7 @@ if a == (1):
         if Health <= 0:
             print("You dead the end")
         else:
-            print("After surviving the attack you continue along the road")    
+            print("After surviving the attack you continue along the road.")    
 
     else:
         print("You hid in the bush    (to be continued)  ")   
