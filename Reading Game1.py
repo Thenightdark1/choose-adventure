@@ -16,15 +16,15 @@ def bandit_attack(player_health, bandit_health, player_strength, bandit_strength
             bandit_current_strength = random.randrange(1,bandit_strength)  
             current_strength = random.randrange(1,player_strength)  
             bandit_health = attack(weapon, current_strength, bandit_health)
-            print("Your attack deals " + str(current_strength) + " damage the bandit has now " + str(bandit_health) + " Health")
-            input("Press Enter to continue")
+            print("Your attack deals " + str(current_strength + weapon_damage(weapon)) + " damage the bandit has now " + str(bandit_health) + " Health")
             if not bandit_health <= 0:
-                player_health = attack("dagger", bandit_current_strength, player_health)
-                print("The bandit attack you for " + str(bandit_current_strength) + " you now have " + str(player_health) + " health")
+                player_health = attack(weapon, bandit_current_strength, player_health)
+                print("The bandit attack you for " + str(bandit_current_strength + weapon_damage(weapon)) + " you now have " + str(player_health) + " health")
                 input("Press Enter to continue")
         return player_health
     else:
         Money = 0
+        print("you have " + str(Money) + " gold left")
 
 
 def wolf_attack(player_health, wolf_health, player_strength, wolf_strength, weapon):
@@ -39,20 +39,20 @@ def wolf_attack(player_health, wolf_health, player_strength, wolf_strength, weap
         print("The wolf has " + str(wolf_health) + " health")
         input("Press Enter to continue") 
         while wolf_health >= 1 and player_health >= 1: 
-            wolf_current_strength = random.randrange(1,wolf_strength)  
-            current_strength = random.randrange(1,player_strength + weapon_damage(weapon))  
+            wolf_current_strength = random.randrange(1, wolf_strength)  
+            current_strength = random.randrange(1, player_strength) 
             wolf_health = attack(weapon, current_strength, wolf_health)
-            print("Your attack deals " + str(current_strength) + " damage the wolf has now " + str(wolf_health) + " Health")
-            input("Press Enter to continue")
+            print("Your attack deals " + str(current_strength + weapon_damage(weapon)) + " damage the wolf has now " + str(wolf_health) + " Health")
             if not wolf_health <= 0:
-                player_health = attack("claw", wolf_current_strength, player_health)
-                print("The wolf attack you for " + str(wolf_current_strength) + " you now have " + str(player_health) + " health")
+                player_health = attack(weapon, wolf_current_strength, player_health)
+                print("The wolf attack you for " + str(wolf_current_strength + weapon_damage(weapon) ) + " you now have " + str(player_health) + " health")
                 input("Press Enter to continue")
         return player_health
           
     else:
         print("you died while trying to run away")
         return 0
+    
 def weapon_damage(weapon):
     if weapon == "sword":
         return 4
@@ -87,12 +87,10 @@ def attack(weapon, strength, enemy_health):
     return enemy_health-weapon_damage(weapon)-strength
           
 weapon = "none"
-bandit_weapon = "dagger"
-wolf_weapon = "claw"
 Food = 1
 Money = 0
 Health1 = 30
-Strength1 = 9
+Strength1 = 7
 bandit = 23
 bandit_strength = 8
 wolf = 15
@@ -103,7 +101,7 @@ Health = Health1 + random.choice([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1
 print("Your strength is " + str(Strength1) +" Plus a random number between 1-5. Your Strength equals to " + str(Strength))
 print("Your Health is " + str(Health1) +" Plus a random number between 10-20. Your Health equals to " + str(Health))
 input("Press Enter to continue")
-print("The story beings With you being attacked by bandits and losing most of your belongings")
+print("The story begins With you being attacked by bandits and losing most of your belongings")
 input("Press Enter to continue")
 print("You had a secret pouch of gold that the bandit didn't find. Your gold is a number from 1-15 you have " + str(Money) + " Gold in your pouch. You also have one meal left to eat")
 input("Press Enter to continue")
@@ -111,7 +109,7 @@ print("When you wake up you see two paths in front of you do you go to the left 
 print("1 : go right or 2 : go left ")
 a = player_input(2)
 if a == (1):    
-    print("After heading down the right path you get a feeling that something is whatching you")
+    print("After heading down the right path you get a feeling that something is watching you")
     input("Press Enter to continue")
     print("1 : continute down the path or 2 : hide in a bush")
     a = player_input(2)
@@ -145,3 +143,4 @@ else:
     print("After walking down the left path an arrow flies out of the bushes and hits you")
     input("Press Enter to continue")
     print("The end you died")
+
